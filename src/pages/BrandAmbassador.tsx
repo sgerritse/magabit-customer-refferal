@@ -6,6 +6,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Share2, TrendingUp, Users, DollarSign, Copy, Check, Facebook, Twitter, Linkedin, Mail, MessageCircle } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Textarea } from "@/components/ui/textarea";
 
 // Mock data
 const mockReferralLinks = [{
@@ -70,6 +71,7 @@ const BrandAmbassador = () => {
     url: string;
     linkType: string;
   } | null>(null);
+  const [editedMessage, setEditedMessage] = useState<string>('');
   const handleCopyLink = (url: string, id: string) => {
     navigator.clipboard.writeText(url);
     setCopiedId(id);
@@ -88,10 +90,10 @@ const BrandAmbassador = () => {
         message = `⚡ Start mining real Bitcoin with MAGAbit! ${linkType} package - Trusted U.S.-based mining infrastructure. Bitcoin delivered directly to your wallet: ${url}`;
         break;
       case 'facebook':
-        message = `Check out MAGAbit's ${linkType} package!`;
+        message = `⚡ Start mining real Bitcoin with MAGAbit! I'm using the ${linkType} package for trusted U.S.-based mining infrastructure. Real BTC delivered directly to your own wallet—no waiting, no middlemen. Join a community of Independent Bitcoin Owners!\n\n${url}`;
         break;
       case 'linkedin':
-        message = `Check out MAGAbit's ${linkType} package!`;
+        message = `I've discovered MAGAbit's ${linkType} package for Bitcoin mining. It's a community of Independent Bitcoin Owners with trusted U.S.-based mining infrastructure. Real Bitcoin delivered directly to your own wallet with full ownership from day one. Worth checking out!\n\n${url}`;
         break;
       case 'whatsapp':
         message = `⚡ Start mining real Bitcoin with MAGAbit's ${linkType} package! Join a community of Independent Bitcoin Owners. Real BTC delivered directly to your wallet—no waiting, no middlemen: ${url}`;
@@ -102,18 +104,19 @@ const BrandAmbassador = () => {
     }
 
     setSharePreview({ platform, message, url, linkType });
+    setEditedMessage(message);
   };
 
   const confirmShare = () => {
-    if (!sharePreview) return;
+    if (!sharePreview || !editedMessage.trim()) return;
 
-    const { platform, message, url } = sharePreview;
+    const { platform, url } = sharePreview;
     let shareUrl = '';
     const encodedUrl = encodeURIComponent(url);
 
     switch (platform) {
       case 'twitter':
-        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}`;
+        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(editedMessage)}`;
         break;
       case 'facebook':
         shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
@@ -122,11 +125,11 @@ const BrandAmbassador = () => {
         shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
         break;
       case 'whatsapp':
-        shareUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+        shareUrl = `https://wa.me/?text=${encodeURIComponent(editedMessage)}`;
         break;
       case 'email':
         const subject = encodeURIComponent(`Start Mining Bitcoin with MAGAbit - ${sharePreview.linkType}`);
-        shareUrl = `mailto:?subject=${subject}&body=${encodeURIComponent(message)}`;
+        shareUrl = `mailto:?subject=${subject}&body=${encodeURIComponent(editedMessage)}`;
         break;
     }
 
@@ -308,20 +311,17 @@ const BrandAmbassador = () => {
           
           <div className="space-y-4 py-4">
             <div>
-              <h4 className="text-sm font-semibold mb-2">Message Preview:</h4>
-              <div className="bg-muted p-4 rounded-md">
-                <p className="text-sm whitespace-pre-wrap">{sharePreview?.message}</p>
-              </div>
+              <h4 className="text-sm font-semibold mb-2">Edit your message:</h4>
+              <Textarea
+                value={editedMessage}
+                onChange={(e) => setEditedMessage(e.target.value)}
+                className="min-h-[150px] font-sans"
+                placeholder="Enter your message..."
+              />
+              <p className="text-xs text-muted-foreground mt-2">
+                {editedMessage.length} characters
+              </p>
             </div>
-            
-            {sharePreview?.platform !== 'email' && (
-              <div>
-                <h4 className="text-sm font-semibold mb-2">Referral Link:</h4>
-                <p className="text-xs text-muted-foreground break-all bg-muted p-2 rounded-md">
-                  {sharePreview?.url}
-                </p>
-              </div>
-            )}
           </div>
 
           <DialogFooter>
