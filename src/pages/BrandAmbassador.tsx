@@ -80,24 +80,22 @@ const BrandAmbassador = () => {
 
     switch (platform) {
       case 'twitter':
-        message = encodeURIComponent(`💰 Earning commissions with ${linkType}! Get ${price} worth of premium content - I earn ${commission} per referral. Check it out:`);
-        shareUrl = `https://twitter.com/intent/tweet?text=${message}&url=${encodedUrl}`;
+        message = encodeURIComponent(`💰 Start earning Bitcoin with MAGAbit! ${linkType} package - I earn ${commission} per referral. Join me: ${url}`);
+        shareUrl = `https://twitter.com/intent/tweet?text=${message}`;
         break;
       case 'facebook':
-        message = encodeURIComponent(`I'm earning ${commission} commission on ${linkType}! This is an amazing opportunity.`);
-        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${message}`;
+        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
         break;
       case 'linkedin':
-        message = encodeURIComponent(`Great opportunity: ${linkType} at ${price}. I earn ${commission} per referral.`);
-        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}&summary=${message}`;
+        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
         break;
       case 'whatsapp':
-        message = encodeURIComponent(`💰 Check out ${linkType} (${price})! I'm earning ${commission} per sale with this amazing product: ${url}`);
+        message = encodeURIComponent(`💰 I'm earning ${commission} commissions with MAGAbit's ${linkType} package! Start mining Bitcoin today: ${url}`);
         shareUrl = `https://wa.me/?text=${message}`;
         break;
       case 'email':
-        const subject = encodeURIComponent(`Check out ${linkType}!`);
-        const body = encodeURIComponent(`Hi!\n\nI wanted to share this amazing opportunity with you. I'm partnering with ${linkType} and earning ${commission} in commissions for each referral.\n\nThis product is valued at ${price} and offers incredible value. I think you'd really benefit from it!\n\nCheck it out here: ${url}\n\nLet me know if you have any questions!\n\nBest regards`);
+        const subject = encodeURIComponent(`Start Mining Bitcoin with MAGAbit - ${linkType}`);
+        const body = encodeURIComponent(`Hi!\n\nI wanted to share an amazing Bitcoin mining opportunity with you through MAGAbit.\n\nI've joined as a customer referral partner and earn ${commission} for each ${linkType} package referral at ${price}.\n\nMAGAbit is a community of Independent Bitcoin Owners earning real BTC through trusted U.S.-based mining infrastructure. You receive real Bitcoin delivered directly to your own wallet—no waiting, no middlemen.\n\nCheck it out here: ${url}\n\nLet me know if you have any questions about mining Bitcoin with MAGAbit!\n\nBest regards`);
         shareUrl = `mailto:?subject=${subject}&body=${body}`;
         break;
     }
