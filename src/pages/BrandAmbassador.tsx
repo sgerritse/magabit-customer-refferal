@@ -205,11 +205,7 @@ const BrandAmbassador = () => {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-border mt-12 py-6">
-        <div className="container max-w-7xl mx-auto px-4 text-center text-sm text-muted-foreground">
-          <p>This is a static demonstration of the MLM referral feature</p>
-        </div>
-      </footer>
+      
     </div>;
 };
 export default BrandAmbassador;
