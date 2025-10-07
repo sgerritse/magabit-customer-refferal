@@ -3,7 +3,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Share2, TrendingUp, Users, DollarSign, Copy, Check, Facebook, Twitter, Linkedin, Mail, MessageCircle } from "lucide-react";
+import { Share2, TrendingUp, Users, DollarSign, Copy, Check, Facebook, Linkedin, Mail, MessageCircle } from "lucide-react";
+import { XIcon } from "@/components/icons/XIcon";
 import { toast } from "@/hooks/use-toast";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
@@ -202,7 +203,7 @@ const BrandAmbassador = () => {
                       <Facebook className="h-4 w-4" />
                     </Button>
                     <Button size="sm" variant="outline" onClick={() => handleShare(link.url, link.type, 'x', link.price, link.commission)} className="h-9 w-9 p-0 hover:bg-sky-50 hover:border-sky-400 hover:text-sky-600">
-                      <Twitter className="h-4 w-4" />
+                      <XIcon className="h-4 w-4" />
                     </Button>
                     <Button size="sm" variant="outline" onClick={() => handleShare(link.url, link.type, 'linkedin', link.price, link.commission)} className="h-9 w-9 p-0 hover:bg-blue-50 hover:border-blue-500 hover:text-blue-700">
                       <Linkedin className="h-4 w-4" />
@@ -297,7 +298,7 @@ const BrandAmbassador = () => {
         <DialogContent className="sm:max-w-[525px]">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
-              {sharePreview?.platform === 'x' && <Twitter className="h-5 w-5" />}
+              {sharePreview?.platform === 'x' && <XIcon className="h-5 w-5" />}
               {sharePreview?.platform === 'facebook' && <Facebook className="h-5 w-5" />}
               {sharePreview?.platform === 'linkedin' && <Linkedin className="h-5 w-5" />}
               {sharePreview?.platform === 'whatsapp' && <MessageCircle className="h-5 w-5" />}
