@@ -130,10 +130,12 @@ const BrandAmbassador = () => {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <Badge variant="secondary" className="font-medium">{link.type}</Badge>
-                    <div className="flex items-center gap-2">
-                      <span className="text-lg font-bold text-primary">{link.price}</span>
-                      <span className="text-sm text-muted-foreground">→</span>
-                      <span className="text-sm font-semibold text-success">{link.commission} commission</span>
+                    <div className="flex items-center gap-3">
+                      <span className="text-lg font-bold text-foreground">{link.price}</span>
+                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-success/10 border border-success/20">
+                        <span className="text-sm font-semibold text-success">{link.commission}</span>
+                        <span className="text-xs text-success/80">commission</span>
+                      </div>
                     </div>
                   </div>
                   <div className="text-sm text-muted-foreground">
