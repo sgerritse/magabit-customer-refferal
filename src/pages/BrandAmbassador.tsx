@@ -73,26 +73,32 @@ const BrandAmbassador = () => {
     setTimeout(() => setCopiedId(null), 2000);
   };
 
-  const handleShare = (url: string, linkType: string, platform: string) => {
+  const handleShare = (url: string, linkType: string, platform: string, price: string, commission: string) => {
     let shareUrl = '';
-    const message = encodeURIComponent(`Check out ${linkType}!`);
+    let message = '';
     const encodedUrl = encodeURIComponent(url);
 
     switch (platform) {
       case 'twitter':
+        message = encodeURIComponent(`💰 Earning commissions with ${linkType}! Get ${price} worth of premium content - I earn ${commission} per referral. Check it out:`);
         shareUrl = `https://twitter.com/intent/tweet?text=${message}&url=${encodedUrl}`;
         break;
       case 'facebook':
-        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
+        message = encodeURIComponent(`I'm earning ${commission} commission on ${linkType}! This is an amazing opportunity.`);
+        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${message}`;
         break;
       case 'linkedin':
-        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+        message = encodeURIComponent(`Great opportunity: ${linkType} at ${price}. I earn ${commission} per referral.`);
+        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}&summary=${message}`;
         break;
       case 'whatsapp':
-        shareUrl = `https://wa.me/?text=${message}%20${encodedUrl}`;
+        message = encodeURIComponent(`💰 Check out ${linkType} (${price})! I'm earning ${commission} per sale with this amazing product: ${url}`);
+        shareUrl = `https://wa.me/?text=${message}`;
         break;
       case 'email':
-        shareUrl = `mailto:?subject=${message}&body=I thought you might be interested: ${url}`;
+        const subject = encodeURIComponent(`Check out ${linkType}!`);
+        const body = encodeURIComponent(`Hi!\n\nI wanted to share this amazing opportunity with you. I'm partnering with ${linkType} and earning ${commission} in commissions for each referral.\n\nThis product is valued at ${price} and offers incredible value. I think you'd really benefit from it!\n\nCheck it out here: ${url}\n\nLet me know if you have any questions!\n\nBest regards`);
+        shareUrl = `mailto:?subject=${subject}&body=${body}`;
         break;
     }
 
@@ -132,9 +138,9 @@ const BrandAmbassador = () => {
                     <Badge variant="secondary" className="font-medium">{link.type}</Badge>
                     <div className="flex items-center gap-3">
                       <span className="text-lg font-bold text-foreground">{link.price}</span>
-                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-success/10 border border-success/20">
-                        <span className="text-sm font-semibold text-success">{link.commission}</span>
-                        <span className="text-xs text-success/80">commission</span>
+                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-green-50 border border-green-300">
+                        <span className="text-sm font-semibold text-green-700">{link.commission}</span>
+                        <span className="text-xs text-green-600">commission</span>
                       </div>
                     </div>
                   </div>
@@ -157,21 +163,21 @@ const BrandAmbassador = () => {
                   </Button>
                 </div>
                 <div className="flex items-center gap-2 pt-2 border-t border-border">
-                  <span className="text-xs text-muted-foreground">Share on:</span>
-                  <div className="flex items-center gap-1">
-                    <Button size="sm" variant="ghost" onClick={() => handleShare(link.url, link.type, 'facebook')} className="h-8 w-8 p-0">
+                  <span className="text-xs font-medium text-muted-foreground">Share on:</span>
+                  <div className="flex items-center gap-1.5">
+                    <Button size="sm" variant="outline" onClick={() => handleShare(link.url, link.type, 'facebook', link.price, link.commission)} className="h-9 w-9 p-0 hover:bg-blue-50 hover:border-blue-400 hover:text-blue-600">
                       <Facebook className="h-4 w-4" />
                     </Button>
-                    <Button size="sm" variant="ghost" onClick={() => handleShare(link.url, link.type, 'twitter')} className="h-8 w-8 p-0">
+                    <Button size="sm" variant="outline" onClick={() => handleShare(link.url, link.type, 'twitter', link.price, link.commission)} className="h-9 w-9 p-0 hover:bg-sky-50 hover:border-sky-400 hover:text-sky-600">
                       <Twitter className="h-4 w-4" />
                     </Button>
-                    <Button size="sm" variant="ghost" onClick={() => handleShare(link.url, link.type, 'linkedin')} className="h-8 w-8 p-0">
+                    <Button size="sm" variant="outline" onClick={() => handleShare(link.url, link.type, 'linkedin', link.price, link.commission)} className="h-9 w-9 p-0 hover:bg-blue-50 hover:border-blue-500 hover:text-blue-700">
                       <Linkedin className="h-4 w-4" />
                     </Button>
-                    <Button size="sm" variant="ghost" onClick={() => handleShare(link.url, link.type, 'whatsapp')} className="h-8 w-8 p-0">
+                    <Button size="sm" variant="outline" onClick={() => handleShare(link.url, link.type, 'whatsapp', link.price, link.commission)} className="h-9 w-9 p-0 hover:bg-green-50 hover:border-green-400 hover:text-green-600">
                       <MessageCircle className="h-4 w-4" />
                     </Button>
-                    <Button size="sm" variant="ghost" onClick={() => handleShare(link.url, link.type, 'email')} className="h-8 w-8 p-0">
+                    <Button size="sm" variant="outline" onClick={() => handleShare(link.url, link.type, 'email', link.price, link.commission)} className="h-9 w-9 p-0 hover:bg-gray-50 hover:border-gray-400 hover:text-gray-700">
                       <Mail className="h-4 w-4" />
                     </Button>
                   </div>
