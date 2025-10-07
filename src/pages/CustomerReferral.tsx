@@ -161,7 +161,7 @@ const CustomerReferral = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Share2 className="h-5 w-5" />
-              Your Referral Links
+              Your Customer Referral Links
             </CardTitle>
             <CardDescription>Share these links with your audience to earn commissions</CardDescription>
           </CardHeader>
