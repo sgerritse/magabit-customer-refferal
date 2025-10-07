@@ -31,6 +31,10 @@
     --accent: 38 92% 50%;
     --accent-foreground: 0 0% 100%;
 
+    /* Success - Green */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+
     /* Destructive */
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
@@ -71,6 +75,9 @@
 
     --accent: 12 87% 60%;
     --accent-foreground: 221 45% 8%;
+
+    --success: 142 71% 45%;
+    --success-foreground: 210 17% 95%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 17% 95%;
