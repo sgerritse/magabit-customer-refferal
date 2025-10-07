@@ -89,9 +89,9 @@ serve(async (req) => {
     }
 
     // Prepare line items for Stripe
-    const price = parseFloat(product.subscription_price || product.price || '0');
-    const signupFee = parseFloat(product.subscription_sign_up_fee || '0');
-    const trialLength = parseInt(product.subscription_trial_length || '0');
+    const price = parseFloat(String(product.subscription_price || product.price || '0'));
+    const signupFee = parseFloat(String(product.subscription_sign_up_fee || '0'));
+    const trialLength = parseInt(String(product.subscription_trial_length || '0'));
     
     // Determine billing interval
     let interval: 'day' | 'week' | 'month' | 'year' = 'month';
@@ -100,7 +100,7 @@ serve(async (req) => {
     else if (period === 'week') interval = 'week';
     else if (period === 'year') interval = 'year';
     
-    const intervalCount = parseInt(product.subscription_period_interval || '1');
+    const intervalCount = parseInt(String(product.subscription_period_interval || '1'));
     const currency = product.currency?.toLowerCase() || 'usd';
 
     const lineItems: any[] = [

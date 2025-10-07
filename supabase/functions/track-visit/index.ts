@@ -55,7 +55,7 @@ serve(async (req) => {
     // Find the referral link
     const { data: link, error: linkError } = await supabase
       .from("referral_links")
-      .select("id, user_id, link_type")
+      .select("id, user_id, link_type, clicks")
       .eq("referral_code", referralCode)
       .eq("is_active", true)
       .single();
@@ -171,17 +171,19 @@ serve(async (req) => {
     }
 
     // Update link click count
-    await supabase.rpc("increment", {
+    const { error: incrementError } = await supabase.rpc("increment", {
       table_name: "referral_links",
       row_id: link.id,
       column_name: "clicks",
-    }).catch(() => {
-      // Fallback if RPC doesn't exist
-      supabase
-        .from("referral_links")
-        .update({ clicks: link.clicks + 1 })
-        .eq("id", link.id);
     });
+    
+    // Fallback if RPC doesn't exist or fails
+    if (incrementError) {
+      await supabase
+        .from("referral_links")
+        .update({ clicks: (link.clicks || 0) + 1 })
+        .eq("id", link.id);
+    }
 
     console.log(`[Track Visit] Visit recorded successfully: ${visit.id}`);
 
@@ -197,22 +199,23 @@ serve(async (req) => {
       JSON.stringify({ 
         success: true, 
         visitId: visit.id,
-        setCookie: `dadderup_ref=${referralCode}; Max-Age=${attributionDays * 24 * 60 * 60}; Path=/; SameSite=Lax`
+        setCookie: `magabit_ref=${referralCode}; Max-Age=${attributionDays * 24 * 60 * 60}; Path=/; SameSite=Lax`
       }),
       { 
         status: 200, 
         headers: { 
           ...corsHeaders, 
           "Content-Type": "application/json",
-          "Set-Cookie": `dadderup_ref=${referralCode}; Max-Age=${attributionDays * 24 * 60 * 60}; Path=/; SameSite=Lax`
+          "Set-Cookie": `magabit_ref=${referralCode}; Max-Age=${attributionDays * 24 * 60 * 60}; Path=/; SameSite=Lax`
         } 
       }
     );
 
   } catch (error) {
     console.error("[Track Visit] Error:", error);
+    const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: errorMessage }),
       { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   }
