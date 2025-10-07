@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Share2, TrendingUp, Users, DollarSign, Copy, Check } from "lucide-react";
+import { Share2, TrendingUp, Users, DollarSign, Copy, Check, Facebook, Twitter, Linkedin, Mail, MessageCircle } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 
 // Mock data
@@ -11,6 +11,7 @@ const mockReferralLinks = [{
   id: '1',
   type: 'MAGAbit+ Fractional',
   price: '$1,200.00',
+  commission: '$120.00',
   url: 'https://magabit.net/username/shop/magabit-fractional',
   clicks: 547,
   conversions: 18
@@ -18,6 +19,7 @@ const mockReferralLinks = [{
   id: '2',
   type: 'MAGAbit+ Pro',
   price: '$12,000.00',
+  commission: '$1,200.00',
   url: 'https://magabit.net/username/shop/magabit-pro-plus',
   clicks: 312,
   conversions: 8
@@ -70,6 +72,36 @@ const BrandAmbassador = () => {
     });
     setTimeout(() => setCopiedId(null), 2000);
   };
+
+  const handleShare = (url: string, linkType: string, platform: string) => {
+    let shareUrl = '';
+    const message = encodeURIComponent(`Check out ${linkType}!`);
+    const encodedUrl = encodeURIComponent(url);
+
+    switch (platform) {
+      case 'twitter':
+        shareUrl = `https://twitter.com/intent/tweet?text=${message}&url=${encodedUrl}`;
+        break;
+      case 'facebook':
+        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
+        break;
+      case 'linkedin':
+        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+        break;
+      case 'whatsapp':
+        shareUrl = `https://wa.me/?text=${message}%20${encodedUrl}`;
+        break;
+      case 'email':
+        shareUrl = `mailto:?subject=${message}&body=I thought you might be interested: ${url}`;
+        break;
+    }
+
+    window.open(shareUrl, '_blank', 'width=600,height=400');
+    toast({
+      title: "Share link opened!",
+      description: `Sharing on ${platform}`
+    });
+  };
   return <div className="min-h-screen brand-ambassador-bg">
       {/* Header */}
       <header className="border-b border-border bg-card">
@@ -98,7 +130,11 @@ const BrandAmbassador = () => {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <Badge variant="secondary" className="font-medium">{link.type}</Badge>
-                    <span className="text-lg font-bold text-primary">{link.price}</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-lg font-bold text-primary">{link.price}</span>
+                      <span className="text-sm text-muted-foreground">→</span>
+                      <span className="text-sm font-semibold text-success">{link.commission} commission</span>
+                    </div>
                   </div>
                   <div className="text-sm text-muted-foreground">
                     {link.clicks} clicks · {link.conversions} conversions
@@ -117,6 +153,26 @@ const BrandAmbassador = () => {
                         Copy
                       </>}
                   </Button>
+                </div>
+                <div className="flex items-center gap-2 pt-2 border-t border-border">
+                  <span className="text-xs text-muted-foreground">Share on:</span>
+                  <div className="flex items-center gap-1">
+                    <Button size="sm" variant="ghost" onClick={() => handleShare(link.url, link.type, 'facebook')} className="h-8 w-8 p-0">
+                      <Facebook className="h-4 w-4" />
+                    </Button>
+                    <Button size="sm" variant="ghost" onClick={() => handleShare(link.url, link.type, 'twitter')} className="h-8 w-8 p-0">
+                      <Twitter className="h-4 w-4" />
+                    </Button>
+                    <Button size="sm" variant="ghost" onClick={() => handleShare(link.url, link.type, 'linkedin')} className="h-8 w-8 p-0">
+                      <Linkedin className="h-4 w-4" />
+                    </Button>
+                    <Button size="sm" variant="ghost" onClick={() => handleShare(link.url, link.type, 'whatsapp')} className="h-8 w-8 p-0">
+                      <MessageCircle className="h-4 w-4" />
+                    </Button>
+                    <Button size="sm" variant="ghost" onClick={() => handleShare(link.url, link.type, 'email')} className="h-8 w-8 p-0">
+                      <Mail className="h-4 w-4" />
+                    </Button>
+                  </div>
                 </div>
               </div>)}
           </CardContent>
