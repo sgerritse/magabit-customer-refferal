@@ -459,7 +459,7 @@
     @apply border-border;
   }
 
-  body {
+  html, body, #root {
     @apply bg-background text-foreground;
   }
 }

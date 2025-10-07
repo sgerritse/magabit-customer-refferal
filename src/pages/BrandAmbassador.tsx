@@ -105,7 +105,7 @@ const BrandAmbassador = () => {
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <code className="flex-1 px-3 py-2 bg-muted rounded text-sm font-mono text-gray-900">
+                  <code className="flex-1 px-3 py-2 bg-card rounded text-sm font-mono text-gray-900">
                     {link.url}
                   </code>
                   <Button size="sm" variant="outline" onClick={() => handleCopyLink(link.url, link.id)} className="shrink-0 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
