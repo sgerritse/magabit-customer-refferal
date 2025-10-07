@@ -9,8 +9,6 @@ const App = () => (
     <Toaster />
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<BrandAmbassador />} />
-        <Route path="/customer-referral" element={<BrandAmbassador />} />
         <Route path="*" element={<BrandAmbassador />} />
       </Routes>
     </BrowserRouter>
