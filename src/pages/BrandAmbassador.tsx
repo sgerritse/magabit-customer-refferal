@@ -70,7 +70,7 @@ const BrandAmbassador = () => {
     });
     setTimeout(() => setCopiedId(null), 2000);
   };
-  return <div className="min-h-screen bg-background">
+  return <div className="min-h-screen brand-ambassador-bg">
       {/* Header */}
       <header className="border-b border-border bg-card">
         
