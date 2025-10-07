@@ -1,8 +1,12 @@
-# Welcome to your Lovable project
+# MAGAbit Customer Referral Program
 
 ## Project info
 
 **URL**: https://lovable.dev/projects/2f7aaafd-6359-42d6-88a7-3d4ba5c27ffe
+
+## About
+
+MAGAbit Customer Referral is a streamlined referral program platform that allows users to share referral links and earn commissions for successful customer conversions.
 
 ## How can I edit this code?
 
@@ -64,7 +68,7 @@ This project is built with:
 
 Simply open [Lovable](https://lovable.dev/projects/2f7aaafd-6359-42d6-88a7-3d4ba5c27ffe) and click on Share -> Publish.
 
-## Can I connect a custom domain to my Lovable project?
+## Can I connect a custom domain to my MAGAbit project?
 
 Yes, you can!
 
