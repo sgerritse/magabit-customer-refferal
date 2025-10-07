@@ -8,7 +8,7 @@
   :root {
     /* Base colors */
     --background: 0 0% 100%;
-    --foreground: 217 33% 17%;
+    --foreground: 0 0% 0%;
 
     /* Card system */
     --card: 0 0% 100%;
@@ -25,7 +25,7 @@
 
     /* Muted - Light gray for subtle elements */
     --muted: 0 0% 98%;
-    --muted-foreground: 215 16% 47%;
+    --muted-foreground: 0 0% 0%;
 
     /* Accent - Amber */
     --accent: 38 92% 50%;
@@ -45,7 +45,7 @@
     --ring: 221 45% 23%;
 
     /* Customer Referral Background */
-    --customer-referral-bg: 210 13% 62%;
+    --customer-referral-bg: 0 0% 96%;
 
     /* Popover */
     --popover: 0 0% 100%;

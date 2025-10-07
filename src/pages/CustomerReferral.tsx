@@ -143,23 +143,8 @@ const CustomerReferral = () => {
     });
   };
   return <div className="min-h-screen customer-referral-bg">
-      {/* Header */}
-      <header className="border-b border-border bg-card">
-        <div className="container max-w-7xl mx-auto px-4 py-6">
-          <h1 className="text-3xl font-bold text-foreground">MAGAbit</h1>
-        </div>
-      </header>
-
       {/* Main Content */}
       <main className="container max-w-7xl mx-auto px-4 py-8 space-y-8">
-        {/* Intro Section */}
-        <div className="text-center space-y-2">
-          <h2 className="text-2xl font-bold text-foreground">Earn Bitcoin by Sharing MAGAbit</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Mine Bitcoin with confidence. MAGAbit is a community of Independent Bitcoin Owners earning real BTC through trusted U.S.-based mining.
-          </p>
-        </div>
-
         {/* Referral Links Section */}
         <Card>
           <CardHeader>
