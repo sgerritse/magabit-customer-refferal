@@ -64,7 +64,7 @@ const mockRecentActivity = [{
   clicks: 19,
   status: 'Pending'
 }];
-const BrandAmbassador = () => {
+const CustomerReferral = () => {
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [sharePreview, setSharePreview] = useState<{
     platform: string;
@@ -355,4 +355,4 @@ const BrandAmbassador = () => {
       </Dialog>
     </div>;
 };
-export default BrandAmbassador;
+export default CustomerReferral;
