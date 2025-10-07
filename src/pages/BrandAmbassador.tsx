@@ -80,7 +80,7 @@ const BrandAmbassador = () => {
 
     switch (platform) {
       case 'twitter':
-        message = encodeURIComponent(`💰 Start earning Bitcoin with MAGAbit! ${linkType} package - I earn ${commission} per referral. Join me: ${url}`);
+        message = encodeURIComponent(`⚡ Start mining real Bitcoin with MAGAbit! ${linkType} package - Trusted U.S.-based mining infrastructure. Bitcoin delivered directly to your wallet: ${url}`);
         shareUrl = `https://twitter.com/intent/tweet?text=${message}`;
         break;
       case 'facebook':
@@ -90,12 +90,12 @@ const BrandAmbassador = () => {
         shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
         break;
       case 'whatsapp':
-        message = encodeURIComponent(`💰 I'm earning ${commission} commissions with MAGAbit's ${linkType} package! Start mining Bitcoin today: ${url}`);
+        message = encodeURIComponent(`⚡ Start mining real Bitcoin with MAGAbit's ${linkType} package! Join a community of Independent Bitcoin Owners. Real BTC delivered directly to your wallet—no waiting, no middlemen: ${url}`);
         shareUrl = `https://wa.me/?text=${message}`;
         break;
       case 'email':
         const subject = encodeURIComponent(`Start Mining Bitcoin with MAGAbit - ${linkType}`);
-        const body = encodeURIComponent(`Hi!\n\nI wanted to share an amazing Bitcoin mining opportunity with you through MAGAbit.\n\nI've joined as a customer referral partner and earn ${commission} for each ${linkType} package referral at ${price}.\n\nMAGAbit is a community of Independent Bitcoin Owners earning real BTC through trusted U.S.-based mining infrastructure. You receive real Bitcoin delivered directly to your own wallet—no waiting, no middlemen.\n\nCheck it out here: ${url}\n\nLet me know if you have any questions about mining Bitcoin with MAGAbit!\n\nBest regards`);
+        const body = encodeURIComponent(`Hi!\n\nI wanted to share an amazing Bitcoin mining opportunity with you through MAGAbit.\n\nMAGAbit is a community of Independent Bitcoin Owners earning real BTC through trusted U.S.-based mining infrastructure. The ${linkType} package at ${price} delivers real Bitcoin directly to your own wallet—no waiting, no middlemen.\n\nYou'll have full ownership and control of your Bitcoin from day one.\n\nCheck it out here: ${url}\n\nLet me know if you have any questions about mining Bitcoin with MAGAbit!\n\nBest regards`);
         shareUrl = `mailto:?subject=${subject}&body=${body}`;
         break;
     }
