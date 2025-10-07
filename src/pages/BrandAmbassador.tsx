@@ -77,7 +77,7 @@ const BrandAmbassador = () => {
       </header>
 
       {/* Main Content */}
-      <main className="container max-w-7xl mx-auto px-4 py-8 space-y-8 bg-slate-50">
+      <main className="container max-w-7xl mx-auto px-4 py-8 space-y-8">
         {/* Intro Section */}
         <div className="text-center space-y-2">
           
