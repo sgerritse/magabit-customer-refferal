@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Share2, TrendingUp, Users, DollarSign, Copy, Check, Facebook, Twitter, Linkedin, Mail, MessageCircle } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 // Mock data
 const mockReferralLinks = [{
@@ -63,6 +64,12 @@ const mockRecentActivity = [{
 }];
 const BrandAmbassador = () => {
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [sharePreview, setSharePreview] = useState<{
+    platform: string;
+    message: string;
+    url: string;
+    linkType: string;
+  } | null>(null);
   const handleCopyLink = (url: string, id: string) => {
     navigator.clipboard.writeText(url);
     setCopiedId(id);
@@ -74,14 +81,39 @@ const BrandAmbassador = () => {
   };
 
   const handleShare = (url: string, linkType: string, platform: string, price: string, commission: string) => {
-    let shareUrl = '';
     let message = '';
+    
+    switch (platform) {
+      case 'twitter':
+        message = `⚡ Start mining real Bitcoin with MAGAbit! ${linkType} package - Trusted U.S.-based mining infrastructure. Bitcoin delivered directly to your wallet: ${url}`;
+        break;
+      case 'facebook':
+        message = `Check out MAGAbit's ${linkType} package!`;
+        break;
+      case 'linkedin':
+        message = `Check out MAGAbit's ${linkType} package!`;
+        break;
+      case 'whatsapp':
+        message = `⚡ Start mining real Bitcoin with MAGAbit's ${linkType} package! Join a community of Independent Bitcoin Owners. Real BTC delivered directly to your wallet—no waiting, no middlemen: ${url}`;
+        break;
+      case 'email':
+        message = `Hi!\n\nI wanted to share an amazing Bitcoin mining opportunity with you through MAGAbit.\n\nMAGAbit is a community of Independent Bitcoin Owners earning real BTC through trusted U.S.-based mining infrastructure. The ${linkType} package at ${price} delivers real Bitcoin directly to your own wallet—no waiting, no middlemen.\n\nYou'll have full ownership and control of your Bitcoin from day one.\n\nCheck it out here: ${url}\n\nLet me know if you have any questions about mining Bitcoin with MAGAbit!\n\nBest regards`;
+        break;
+    }
+
+    setSharePreview({ platform, message, url, linkType });
+  };
+
+  const confirmShare = () => {
+    if (!sharePreview) return;
+
+    const { platform, message, url } = sharePreview;
+    let shareUrl = '';
     const encodedUrl = encodeURIComponent(url);
 
     switch (platform) {
       case 'twitter':
-        message = encodeURIComponent(`⚡ Start mining real Bitcoin with MAGAbit! ${linkType} package - Trusted U.S.-based mining infrastructure. Bitcoin delivered directly to your wallet: ${url}`);
-        shareUrl = `https://twitter.com/intent/tweet?text=${message}`;
+        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}`;
         break;
       case 'facebook':
         shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
@@ -90,20 +122,20 @@ const BrandAmbassador = () => {
         shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
         break;
       case 'whatsapp':
-        message = encodeURIComponent(`⚡ Start mining real Bitcoin with MAGAbit's ${linkType} package! Join a community of Independent Bitcoin Owners. Real BTC delivered directly to your wallet—no waiting, no middlemen: ${url}`);
-        shareUrl = `https://wa.me/?text=${message}`;
+        shareUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
         break;
       case 'email':
-        const subject = encodeURIComponent(`Start Mining Bitcoin with MAGAbit - ${linkType}`);
-        const body = encodeURIComponent(`Hi!\n\nI wanted to share an amazing Bitcoin mining opportunity with you through MAGAbit.\n\nMAGAbit is a community of Independent Bitcoin Owners earning real BTC through trusted U.S.-based mining infrastructure. The ${linkType} package at ${price} delivers real Bitcoin directly to your own wallet—no waiting, no middlemen.\n\nYou'll have full ownership and control of your Bitcoin from day one.\n\nCheck it out here: ${url}\n\nLet me know if you have any questions about mining Bitcoin with MAGAbit!\n\nBest regards`);
-        shareUrl = `mailto:?subject=${subject}&body=${body}`;
+        const subject = encodeURIComponent(`Start Mining Bitcoin with MAGAbit - ${sharePreview.linkType}`);
+        shareUrl = `mailto:?subject=${subject}&body=${encodeURIComponent(message)}`;
         break;
     }
 
     window.open(shareUrl, '_blank', 'width=600,height=400');
+    setSharePreview(null);
+    
     toast({
-      title: "Share link opened!",
-      description: `Sharing on ${platform}`
+      title: "Shared successfully!",
+      description: `Your referral link has been shared on ${platform}.`,
     });
   };
   return <div className="min-h-screen customer-referral-bg">
@@ -257,6 +289,51 @@ const BrandAmbassador = () => {
 
       {/* Footer */}
       
+      {/* Share Preview Dialog */}
+      <Dialog open={!!sharePreview} onOpenChange={() => setSharePreview(null)}>
+        <DialogContent className="sm:max-w-[525px]">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              {sharePreview?.platform === 'twitter' && <Twitter className="h-5 w-5" />}
+              {sharePreview?.platform === 'facebook' && <Facebook className="h-5 w-5" />}
+              {sharePreview?.platform === 'linkedin' && <Linkedin className="h-5 w-5" />}
+              {sharePreview?.platform === 'whatsapp' && <MessageCircle className="h-5 w-5" />}
+              {sharePreview?.platform === 'email' && <Mail className="h-5 w-5" />}
+              Share on {sharePreview?.platform.charAt(0).toUpperCase()}{sharePreview?.platform.slice(1)}
+            </DialogTitle>
+            <DialogDescription>
+              Preview your message before sharing
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="space-y-4 py-4">
+            <div>
+              <h4 className="text-sm font-semibold mb-2">Message Preview:</h4>
+              <div className="bg-muted p-4 rounded-md">
+                <p className="text-sm whitespace-pre-wrap">{sharePreview?.message}</p>
+              </div>
+            </div>
+            
+            {sharePreview?.platform !== 'email' && (
+              <div>
+                <h4 className="text-sm font-semibold mb-2">Referral Link:</h4>
+                <p className="text-xs text-muted-foreground break-all bg-muted p-2 rounded-md">
+                  {sharePreview?.url}
+                </p>
+              </div>
+            )}
+          </div>
+
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setSharePreview(null)}>
+              Cancel
+            </Button>
+            <Button onClick={confirmShare}>
+              Share Now
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>;
 };
 export default BrandAmbassador;
