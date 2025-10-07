@@ -9,7 +9,6 @@ const App = () => (
     <Toaster />
     <BrowserRouter>
       <Routes>
-        <Route path="/customer-referral" element={<CustomerReferral />} />
         <Route path="/" element={<CustomerReferral />} />
         <Route path="*" element={<CustomerReferral />} />
       </Routes>
