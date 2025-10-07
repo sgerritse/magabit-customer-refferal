@@ -65,7 +65,7 @@ Deno.test("send-email - Invalid email format returns validation error", async ()
 
 Deno.test("send-email - Template variables are replaced correctly", async () => {
   const template = "Hello {{name}}!";
-  const variables = { name: "John" };
+  const variables: Record<string, string> = { name: "John" };
   const result = template.replace(/\{\{(\w+)\}\}/g, (_, key) => variables[key] || '');
   assertEquals(result, "Hello John!");
 });

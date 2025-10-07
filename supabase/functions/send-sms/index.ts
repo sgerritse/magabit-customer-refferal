@@ -188,7 +188,8 @@ serve(async (req) => {
         }
       } catch (error) {
         console.error(`Error sending SMS to ${phone}:`, error);
-        results.push({ phone, success: false, error: error.message });
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+        results.push({ phone, success: false, error: errorMessage });
       }
     }
 
@@ -198,8 +199,9 @@ serve(async (req) => {
     });
   } catch (error) {
     console.error('Error in send-sms function:', error);
+    const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: errorMessage }),
       {
         status: 500,
         headers: { ...corsHeaders, ...securityHeaders, 'Content-Type': 'application/json' },

@@ -75,7 +75,8 @@ serve(async (req) => {
       event = stripe.webhooks.constructEvent(body, signature, settings.webhook_secret);
       logStep("Webhook signature verified", { type: event.type });
     } catch (err) {
-      logStep("Signature verification failed", { error: err.message });
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+      logStep("Signature verification failed", { error: errorMessage });
       return new Response(JSON.stringify({ error: "Invalid signature" }), {
         status: 400,
         headers: { ...corsHeaders, ...securityHeaders, 'Content-Type': 'application/json' },
@@ -217,8 +218,10 @@ serve(async (req) => {
       headers: { ...corsHeaders, ...securityHeaders, 'Content-Type': 'application/json' },
     });
   } catch (error) {
-    logStep("ERROR", { message: error.message, stack: error.stack });
-    return new Response(JSON.stringify({ error: error.message }), {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    const errorStack = error instanceof Error ? error.stack : undefined;
+    logStep("ERROR", { message: errorMessage, stack: errorStack });
+    return new Response(JSON.stringify({ error: errorMessage }), {
       status: 500,
       headers: { ...corsHeaders, ...securityHeaders, 'Content-Type': 'application/json' },
     });

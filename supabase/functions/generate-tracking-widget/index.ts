@@ -109,7 +109,7 @@ serve(async (req) => {
         
         return data;
       } catch (error) {
-        console.error('[DadderUp Tracking] Error tracking conversion:', error);
+        console.error('[MAGAbit Tracking] Error tracking conversion:', error);
         throw error;
       }
     }
