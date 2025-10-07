@@ -82,7 +82,7 @@ export const NavigationDrawer = ({ open, onOpenChange }: NavigationDrawerProps) 
         { icon: Users, label: "Community", path: "/community", action: () => { navigate('/community'); onOpenChange(false); } },
         { icon: ShoppingBag, label: "Shop", path: "/shop", action: () => { window.open('https://dadderup.com/shop/', '_blank'); onOpenChange(false); } },
         { icon: Youtube, label: "Podcasts", path: "/podcasts", action: () => { navigate('/podcasts'); onOpenChange(false); } },
-        { icon: Award, label: "Brand Ambassador", path: "/brand-ambassador", action: () => { navigate('/brand-ambassador'); onOpenChange(false); } },
+        { icon: Award, label: "Customer Referral", path: "/customer-referral", action: () => { navigate('/customer-referral'); onOpenChange(false); } },
       ]
     },
     {

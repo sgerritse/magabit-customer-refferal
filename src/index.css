@@ -158,7 +158,7 @@
     --payout-amount-color: 76 54% 48%;
     --chart-primary-color: 221 45% 23%;
     --chart-secondary-color: 12 87% 55%;
-    --brand-ambassador-bg: 210 13% 62%;
+    --customer-referral-bg: 210 13% 62%;
     
     /* Admin/Challenges */
     --challenge-card-bg: 0 0% 100%;
@@ -378,7 +378,7 @@
     --payout-amount-color: 76 54% 55%;
     --chart-primary-color: 221 45% 35%;
     --chart-secondary-color: 12 87% 60%;
-    --brand-ambassador-bg: 210 13% 62%;
+    --customer-referral-bg: 210 13% 62%;
     
     /* Admin/Challenges - Dark mode */
     --challenge-card-bg: 221 45% 12%;
@@ -507,8 +507,8 @@
     @apply transition-smooth hover:translate-y-[-2px] hover:shadow-lg;
   }
 
-  /* Brand Ambassador page background */
-  .brand-ambassador-bg {
-    background-color: hsl(var(--brand-ambassador-bg) / 0.12);
+  /* Customer Referral page background */
+  .customer-referral-bg {
+    background-color: hsl(var(--customer-referral-bg) / 0.12);
   }
 }
