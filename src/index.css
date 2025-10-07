@@ -2,46 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
-/* DadderUp Design System - Brand Colors */
+/* Magabit.net Design System - Brand Colors */
 
 @layer base {
   :root {
-    /* Base colors - Vibrant blue background with white text */
-    --background: 210 61% 44%;
-    --foreground: 0 0% 100%;
+    /* Base colors - Clean light background with dark text */
+    --background: 216 33% 97%;
+    --foreground: 217 33% 17%;
 
-    /* Card system - Clean white cards */
+    /* Card system - Pure white cards */
     --card: 0 0% 100%;
-    --card-foreground: 221 45% 23%;
-    --card-border: 222 22% 85%;
+    --card-foreground: 217 33% 17%;
+    --card-border: 220 13% 91%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 221 45% 23%;
+    --popover-foreground: 217 33% 17%;
 
-    /* Primary - Brand Dark Blue */
-    --primary: 221 45% 23%;
+    /* Primary - Magabit Blue */
+    --primary: 217 91% 54%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 210 61% 44%;
+    --primary-glow: 217 91% 64%;
 
-    /* Secondary - Brand Blue */
-    --secondary: 212 69% 33%;
-    --secondary-foreground: 0 0% 100%;
+    /* Secondary - Light gray */
+    --secondary: 220 13% 95%;
+    --secondary-foreground: 217 33% 17%;
 
-    /* Success/Growth - Vibrant Blue for progress */
-    --success: 210 61% 44%;
+    /* Success/Growth - Green for conversions */
+    --success: 158 64% 52%;
     --success-foreground: 0 0% 100%;
-    --success-glow: 210 61% 54%;
+    --success-glow: 158 64% 62%;
     
     /* Progress bar specific green */
-    --progress: 142 69% 58%;
-    --progress-glow: 142 69% 68%;
+    --progress: 158 64% 52%;
+    --progress-glow: 158 64% 62%;
 
-    /* Muted - Optimized for blue background */
-    --muted: 210 30% 35%;
-    --muted-foreground: 210 17% 70%;
+    /* Muted - Light gray for subtle elements */
+    --muted: 220 13% 95%;
+    --muted-foreground: 215 16% 47%;
 
-    /* Accent - Brand Orange */
-    --accent: 12 87% 55%;
+    /* Accent - Amber for pending states */
+    --accent: 38 92% 50%;
     --accent-foreground: 0 0% 100%;
     
     /* Submission boxes - Photo/Video/Audio upload areas */
