@@ -37,7 +37,7 @@
     --progress-glow: 158 64% 62%;
 
     /* Muted - Light gray for subtle elements */
-    --muted: 220 13% 95%;
+    --muted: 0 0% 98%;
     --muted-foreground: 215 16% 47%;
 
     /* Accent - Amber for pending states */
@@ -266,7 +266,7 @@
     --progress: 142 69% 55%;
     --progress-glow: 142 69% 65%;
 
-    --muted: 220 17% 20%;
+    --muted: 0 0% 15%;
     --muted-foreground: 222 22% 65%;
 
     --accent: 12 87% 60%;
