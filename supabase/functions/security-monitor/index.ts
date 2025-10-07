@@ -34,7 +34,7 @@ function generateSecurityReportEmail({ status, date, summary, healthData, anomal
       
       <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; border-radius: 10px 10px 0 0; text-align: center; color: white;">
         <h1 style="margin: 0; font-size: 24px;">🔒 Daily Security Monitoring Report</h1>
-        <p style="margin: 10px 0 0 0; opacity: 0.9;">DadderUp Security System</p>
+        <p style="margin: 10px 0 0 0; opacity: 0.9;">MAGAbit Security System</p>
       </div>
 
       <div style="background: white; padding: 30px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 10px 10px;">
@@ -113,7 +113,7 @@ function generateSecurityReportEmail({ status, date, summary, healthData, anomal
       </div>
 
       <div style="text-align: center; padding: 20px; color: #9ca3af; font-size: 12px;">
-        <p>This is an automated security report from DadderUp Security System</p>
+        <p>This is an automated security report from MAGAbit Security System</p>
         <p>To disable these emails, go to Admin → Notifications → Email Settings</p>
       </div>
 
@@ -275,7 +275,7 @@ serve(async (req) => {
             'Authorization': `Bearer ${supabaseKey}`,
           },
           body: JSON.stringify({
-            recipients: ['steven@dadderup.com'],
+            recipients: ['security@magabit.net'],
             subject: `🔒 Daily Security Report - ${new Date().toISOString().split('T')[0]} - ${overallStatus === 'OK' ? '✅ OK' : overallStatus === 'WARNING' ? '⚠️ WARNING' : '🔴 CRITICAL'}`,
             message: emailHtml
           })

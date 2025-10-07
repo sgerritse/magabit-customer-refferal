@@ -31,7 +31,7 @@ serve(async (req) => {
     // Get WordPress credentials from environment
     const consumerKey = Deno.env.get('WOOCOMMERCE_CONSUMER_KEY');
     const consumerSecret = Deno.env.get('WOOCOMMERCE_CONSUMER_SECRET');
-    const siteUrl = Deno.env.get('WOOCOMMERCE_SITE_URL') || 'https://dadderup.com';
+    const siteUrl = Deno.env.get('WOOCOMMERCE_SITE_URL') || 'https://magabit.net';
 
     if (!consumerKey || !consumerSecret) {
       console.error('WooCommerce credentials not configured');
@@ -53,10 +53,10 @@ serve(async (req) => {
     let usedWooFallback = false;
 
     // Call WordPress API with Basic Authentication (try hyphenated endpoint first)
-    console.log('Calling WordPress API:', { url: `${siteUrl}/wp-json/dadderup/v1/create-user` });
+    console.log('Calling WordPress API:', { url: `${siteUrl}/wp-json/magabit/v1/create-user` });
     
     let wpResponse = await fetch(
-      `${siteUrl}/wp-json/dadderup/v1/create-user`,
+      `${siteUrl}/wp-json/magabit/v1/create-user`,
       {
         method: 'POST',
         headers: {
@@ -69,9 +69,9 @@ serve(async (req) => {
 
     // Fallback to underscore endpoint if hyphenated one returns 404
     if (wpResponse.status === 404) {
-      console.log('Trying fallback endpoint with underscore:', { url: `${siteUrl}/wp-json/dadderup/v1/create_user` });
+      console.log('Trying fallback endpoint with underscore:', { url: `${siteUrl}/wp-json/magabit/v1/create_user` });
       wpResponse = await fetch(
-        `${siteUrl}/wp-json/dadderup/v1/create_user`,
+        `${siteUrl}/wp-json/magabit/v1/create_user`,
         {
           method: 'POST',
           headers: {
@@ -102,13 +102,13 @@ serve(async (req) => {
             phone: payload.phone || ''
           },
           meta_data: [
-            { key: 'dadderup_father_type', value: payload.father_type },
-            { key: 'dadderup_how_many_kids', value: payload.how_many_kids ?? 0 },
-            { key: 'dadderup_agree_terms', value: payload.agree_terms },
-            ...(payload.date_of_birth ? [{ key: 'dadderup_date_of_birth', value: payload.date_of_birth }] : []),
-            ...(payload.due_date ? [{ key: 'dadderup_due_date', value: payload.due_date }] : []),
-            ...(payload.child_names ? [{ key: 'dadderup_child_names', value: payload.child_names }] : []),
-            ...(payload.child_ages ? [{ key: 'dadderup_child_ages', value: payload.child_ages }] : []),
+            { key: 'magabit_father_type', value: payload.father_type },
+            { key: 'magabit_how_many_kids', value: payload.how_many_kids ?? 0 },
+            { key: 'magabit_agree_terms', value: payload.agree_terms },
+            ...(payload.date_of_birth ? [{ key: 'magabit_date_of_birth', value: payload.date_of_birth }] : []),
+            ...(payload.due_date ? [{ key: 'magabit_due_date', value: payload.due_date }] : []),
+            ...(payload.child_names ? [{ key: 'magabit_child_names', value: payload.child_names }] : []),
+            ...(payload.child_ages ? [{ key: 'magabit_child_ages', value: payload.child_ages }] : []),
           ],
         };
 
@@ -217,7 +217,7 @@ serve(async (req) => {
 
       if (isEmailExists) {
         try {
-          const siteUrl = Deno.env.get('WOOCOMMERCE_SITE_URL') || 'https://dadderup.com';
+          const siteUrl = Deno.env.get('WOOCOMMERCE_SITE_URL') || 'https://magabit.net';
           const consumerKey = Deno.env.get('WOOCOMMERCE_CONSUMER_KEY');
           const consumerSecret = Deno.env.get('WOOCOMMERCE_CONSUMER_SECRET');
           const credentials = btoa(`${consumerKey}:${consumerSecret}`);
@@ -263,12 +263,12 @@ serve(async (req) => {
                   first_name: existing.first_name || payload.first_name,
                   last_name: existing.last_name || payload.last_name,
                   phone: (existing.billing && existing.billing.phone) || existing.phone || payload.phone,
-                  date_of_birth: metaMap['dadderup_date_of_birth'] || payload.date_of_birth,
-                  father_type: (metaMap['dadderup_father_type'] as 'blood_father' | 'flex_dad') || payload.father_type,
-                  how_many_kids: parseInt(metaMap['dadderup_how_many_kids'] || `${payload.how_many_kids ?? 0}`) || 0,
+                  date_of_birth: metaMap['magabit_date_of_birth'] || payload.date_of_birth,
+                  father_type: (metaMap['magabit_father_type'] as 'blood_father' | 'flex_dad') || payload.father_type,
+                  how_many_kids: parseInt(metaMap['magabit_how_many_kids'] || `${payload.how_many_kids ?? 0}`) || 0,
                   child_names: undefined,
                   child_ages: undefined,
-                  due_date: metaMap['dadderup_due_date'] || payload.due_date,
+                  due_date: metaMap['magabit_due_date'] || payload.due_date,
                 }),
               });
 

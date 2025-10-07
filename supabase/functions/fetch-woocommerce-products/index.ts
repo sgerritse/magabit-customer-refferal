@@ -29,7 +29,7 @@ serve(async (req) => {
       const lineItems = body.line_items || [];
 
       // Get referral code from order meta or cookies
-      const referralCode = body.meta_data?.find((m: any) => m.key === 'dadderup_ref')?.value;
+      const referralCode = body.meta_data?.find((m: any) => m.key === 'magabit_ref')?.value;
 
       if (referralCode && userId) {
         // Track conversion
@@ -67,7 +67,7 @@ serve(async (req) => {
 
     // Handle GET request (fetch products)
     const response = await fetch(
-      `${siteUrl}/wp-json/dadderup-app/v1/woo-subscriptions/`,
+      `${siteUrl}/wp-json/magabit-app/v1/woo-subscriptions/`,
       {
         headers: {
           'Authorization': `Bearer ${apiKey}`,

@@ -10,9 +10,9 @@ const ALLOWED_ORIGINS = [
   'http://localhost:5173',
   'http://localhost:3000',
   // Production domains
-  'https://app.dadderup.com',
-  'https://dadderup.com',
-  'https://www.dadderup.com',
+  'https://app.magabit.net',
+  'https://magabit.net',
+  'https://www.magabit.net',
 ];
 
 /**

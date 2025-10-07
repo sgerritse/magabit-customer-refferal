@@ -3,7 +3,7 @@
   
   const SUPABASE_URL = 'https://ctmzlorgzptgeluwjxwk.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN0bXpsb3JnenB0Z2VsdXdqeHdrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc5MTMyNzcsImV4cCI6MjA3MzQ4OTI3N30.sSt9h440CZ6aYyCdkALmGO5WEwL1z-6BBrnZeTJNkTI';
-  const COOKIE_NAME = 'dadderup_ref';
+  const COOKIE_NAME = 'magabit_ref';
   const COOKIE_DAYS = 30;
   
   // Utility: Get cookie by name
@@ -44,12 +44,12 @@
     // Check if already tracked in cookie
     const existingCookie = getCookie(COOKIE_NAME);
     if (existingCookie) {
-      console.log('[DadderUp Tracking] Already tracked with code:', existingCookie);
+      console.log('[MAGAbit Tracking] Already tracked with code:', existingCookie);
       return;
     }
     
     if (!referralCode) {
-      console.log('[DadderUp Tracking] No referral code found');
+      console.log('[MAGAbit Tracking] No referral code found');
       return;
     }
     
@@ -72,25 +72,25 @@
       const data = await response.json();
       
       if (data.success) {
-        console.log('[DadderUp Tracking] Visit tracked successfully');
+        console.log('[MAGAbit Tracking] Visit tracked successfully');
         
         // Store referral code in cookie
         setCookie(COOKIE_NAME, referralCode, COOKIE_DAYS);
       } else {
-        console.warn('[DadderUp Tracking] Visit tracking failed:', data.error);
+        console.warn('[MAGAbit Tracking] Visit tracking failed:', data.error);
       }
     } catch (error) {
-      console.error('[DadderUp Tracking] Error tracking visit:', error);
+      console.error('[MAGAbit Tracking] Error tracking visit:', error);
     }
   }
   
   // Expose conversion tracking API
-  window.DadderUpTracking = {
+  window.MAGAbitTracking = {
     trackConversion: async function(userId, orderValue, productId = null, subscriptionId = null) {
       const referralCode = getCookie(COOKIE_NAME) || getReferralCode();
       
       if (!referralCode) {
-        console.log('[DadderUp Tracking] No referral code for conversion');
+        console.log('[MAGAbit Tracking] No referral code for conversion');
         return { success: false, error: 'No referral code found' };
       }
       
@@ -113,7 +113,7 @@
         const data = await response.json();
         
         if (data.success) {
-          console.log('[DadderUp Tracking] Conversion tracked successfully');
+          console.log('[MAGAbit Tracking] Conversion tracked successfully');
           
           // Clear the referral code after successful conversion
           document.cookie = `${COOKIE_NAME}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
@@ -121,7 +121,7 @@
         
         return data;
       } catch (error) {
-        console.error('[DadderUp Tracking] Error tracking conversion:', error);
+        console.error('[MAGAbit Tracking] Error tracking conversion:', error);
         return { success: false, error: error.message };
       }
     },
@@ -133,7 +133,7 @@
     
     clearAttribution: function() {
       document.cookie = `${COOKIE_NAME}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-      console.log('[DadderUp Tracking] Attribution cleared');
+      console.log('[MAGAbit Tracking] Attribution cleared');
     }
   };
   

@@ -39,7 +39,7 @@ serve(async (req) => {
     const referralCode = getReferralCode();
     
     if (!referralCode) {
-      console.log('[DadderUp Tracking] No referral code found');
+      console.log('[MAGAbit Tracking] No referral code found');
       return;
     }
     
@@ -62,23 +62,23 @@ serve(async (req) => {
       const data = await response.json();
       
       if (data.success) {
-        console.log('[DadderUp Tracking] Visit tracked successfully');
+        console.log('[MAGAbit Tracking] Visit tracked successfully');
         
         // Store referral code in localStorage for conversion tracking
-        localStorage.setItem('dadderup_ref', referralCode);
+        localStorage.setItem('magabit_ref', referralCode);
       }
     } catch (error) {
-      console.error('[DadderUp Tracking] Error tracking visit:', error);
+      console.error('[MAGAbit Tracking] Error tracking visit:', error);
     }
   }
   
   // Track conversion (call this after successful signup/purchase)
-  window.DadderUpTracking = {
+  window.MAGAbitTracking = {
     trackConversion: async function(userId, orderValue, productId = null, subscriptionId = null) {
-      const referralCode = localStorage.getItem('dadderup_ref') || getReferralCode();
+      const referralCode = localStorage.getItem('magabit_ref') || getReferralCode();
       
       if (!referralCode) {
-        console.log('[DadderUp Tracking] No referral code for conversion');
+        console.log('[MAGAbit Tracking] No referral code for conversion');
         return;
       }
       
@@ -101,10 +101,10 @@ serve(async (req) => {
         const data = await response.json();
         
         if (data.success) {
-          console.log('[DadderUp Tracking] Conversion tracked successfully');
+          console.log('[MAGAbit Tracking] Conversion tracked successfully');
           
           // Clear the referral code after successful conversion
-          localStorage.removeItem('dadderup_ref');
+          localStorage.removeItem('magabit_ref');
         }
         
         return data;
