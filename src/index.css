@@ -1,0 +1,507 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* DadderUp Design System - Brand Colors */
+
+@layer base {
+  :root {
+    /* Base colors - Vibrant blue background with white text */
+    --background: 210 61% 44%;
+    --foreground: 0 0% 100%;
+
+    /* Card system - Clean white cards */
+    --card: 0 0% 100%;
+    --card-foreground: 221 45% 23%;
+    --card-border: 222 22% 85%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 221 45% 23%;
+
+    /* Primary - Brand Dark Blue */
+    --primary: 221 45% 23%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 210 61% 44%;
+
+    /* Secondary - Brand Blue */
+    --secondary: 212 69% 33%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Success/Growth - Vibrant Blue for progress */
+    --success: 210 61% 44%;
+    --success-foreground: 0 0% 100%;
+    --success-glow: 210 61% 54%;
+    
+    /* Progress bar specific green */
+    --progress: 142 69% 58%;
+    --progress-glow: 142 69% 68%;
+
+    /* Muted - Optimized for blue background */
+    --muted: 210 30% 35%;
+    --muted-foreground: 210 17% 70%;
+
+    /* Accent - Brand Orange */
+    --accent: 12 87% 55%;
+    --accent-foreground: 0 0% 100%;
+    
+    /* Submission boxes - Photo/Video/Audio upload areas */
+    --submission-box: 210 30% 25%;
+    --submission-box-border: 222 22% 85%;
+    --submission-box-text: 0 0% 100%;
+    --submission-pill-enabled-text: 76 54% 48%;
+    --submission-pill-disabled-text: 220 9% 46%;
+    
+    /* Badges Card Module */
+    --badges-card-bg: 0 0% 100%;
+    --badges-card-border: 222 22% 85%;
+    --badge-item-bg: 0 0% 100%;
+    --badge-item-border: 226 232 240;
+    --badge-item-text: 17 24 39;
+    
+    /* View Challenges Button */
+    --view-challenges-btn-bg: 0 0% 100%;
+    --view-challenges-btn-text: 17 24 39;
+    --view-challenges-btn-border: 226 232 240;
+    
+    /* Tab Navigation */
+    --tab-container-bg: 240 5% 96%;
+    --tab-active-bg: 12 87% 55%;
+    --tab-active-text: 0 0% 100%;
+    --tab-inactive-text: 0 0% 45%;
+    
+    /* Day Label */
+    --day-label-text: 0 0% 45%;
+    
+    /* Form Section */
+    --form-label-text: 0 0% 0%;
+    --form-instruction-text: 37 99 235;
+    --submission-label-text: 0 0% 45%;
+    --submission-icon-color: 37 99 235;
+    
+    /* Media Submission Buttons */
+    --submission-primary-btn-bg: 0 0% 100%;
+    --submission-primary-btn-border: 25 95% 53%;
+    --submission-primary-btn-text: 25 95% 53%;
+    --submission-secondary-btn-bg: 0 0% 100%;
+    --submission-secondary-btn-border: 217 33% 92%;
+    --submission-secondary-btn-text: 217 33% 42%;
+    
+    /* Shop Widget */
+    --shop-widget-bg: 214 100% 97%;
+    --shop-widget-border: 213 94% 88%;
+    --shop-widget-text: 217 91% 60%;
+    --shop-widget-btn-bg: 214 100% 97%;
+    --shop-widget-btn-border: 213 94% 88%;
+    --shop-widget-btn-text: 217 91% 60%;
+    
+    /* Dashboard Progress Bar */
+    --dashboard-progress-bar-bg: 210 30% 35%;
+    --dashboard-progress-bar-fill: 142 69% 58%;
+    
+    /* Feelings Subtext */
+    --feelings-subtext-text: 0 0% 45%;
+    
+    /* Dashboard Page Variables */
+    --hero-bg: 221 45% 23%;
+    --hero-text: 0 0% 100%;
+    --stats-card-bg: 0 0% 100%;
+    --stats-card-border: 222 22% 85%;
+    --stats-icon-bg: 254 249 195;
+    --stats-icon-color: 202 138 4;
+    --stats-value-text: 59 130 246;
+    --stats-label-text: 71 85 105;
+    --stats-value-color: 221 45% 23%;
+    --encouragement-bg: 210 61% 44%;
+    --encouragement-text: 0 0% 100%;
+    
+    /* Getting Started/Onboarding */
+    --page-title-color: 221 45% 23%;
+    --onboarding-step-bg: 0 0% 100%;
+    --onboarding-step-border: 222 22% 85%;
+    --onboarding-step-number-bg: 210 30% 35%;
+    --onboarding-step-number-text: 0 0% 100%;
+    --onboarding-completed-bg: 76 54% 48%;
+    --onboarding-completed-text: 0 0% 100%;
+    --onboarding-progress-bar-bg: 210 30% 35%;
+    --onboarding-progress-bar-fill: 210 61% 44%;
+    --video-card-bg: 0 0% 100%;
+    --video-card-border: 222 22% 85%;
+    
+    /* Progress Page */
+    --streak-card-bg: 210 61% 44%;
+    --streak-value-color: 0 0% 100%;
+    --weekly-grid-item-bg: 210 30% 35%;
+    --weekly-grid-completed-bg: 76 54% 48%;
+    --achievement-box-bg: 12 87% 55%;
+    --achievement-box-border: 12 87% 48%;
+    --leaderboard-item-bg: 0 0% 100%;
+    --leaderboard-rank-color: 221 45% 23%;
+    
+    /* Profile Page */
+    --avatar-border-color: 221 45% 23%;
+    --form-field-bg: 0 0% 100%;
+    --form-field-border: 222 22% 75%;
+    --form-field-text: 221 45% 23%;
+    --form-disabled-bg: 210 17% 96%;
+    --form-disabled-text: 222 22% 65%;
+    --child-input-bg: 0 0% 100%;
+    
+    /* Brand Ambassador */
+    --referral-card-bg: 0 0% 100%;
+    --referral-card-border: 222 22% 85%;
+    --stats-counter-bg: 210 61% 44%;
+    --stats-counter-text: 0 0% 100%;
+    --tier-badge-bronze: 12 87% 55%;
+    --tier-badge-silver: 0 0% 75%;
+    --tier-badge-gold: 45 100% 51%;
+    --payout-item-bg: 0 0% 100%;
+    --payout-amount-color: 76 54% 48%;
+    --chart-primary-color: 221 45% 23%;
+    --chart-secondary-color: 12 87% 55%;
+    
+    /* Admin/Challenges */
+    --challenge-card-bg: 0 0% 100%;
+    --challenge-card-border: 222 22% 85%;
+    --day-badge-bg: 221 45% 23%;
+    --day-badge-text: 0 0% 100%;
+    --editor-bg: 0 0% 100%;
+    --editor-text: 221 45% 23%;
+    --submission-pill-enabled-bg: 76 54% 48%;
+    --submission-pill-enabled-text: 0 0% 100%;
+    --submission-pill-disabled-bg: 0 84.2% 60.2%;
+    --submission-pill-disabled-text: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 222 22% 85%;
+    --input: 0 0% 100%;
+    --input-foreground: 221 45% 23%;
+    --input-border: 222 22% 75%;
+    --ring: 221 45% 23%;
+    
+    /* Module-specific colors */
+    /* Buttons */
+    --button-primary-bg: 12 87% 55%;
+    --button-primary-text: 0 0% 100%;
+    --button-primary-hover: 12 87% 48%;
+    --button-secondary-bg: 0 0% 100%;
+    --button-secondary-text: 221 45% 23%;
+    --button-secondary-hover: 210 17% 96%;
+    
+    /* Tabs & Segmented Controls */
+    --tab-active-bg: 12 87% 55%;
+    --tab-active-text: 0 0% 100%;
+    --tab-inactive-bg: 210 17% 96%;
+    --tab-inactive-text: 221 45% 23%;
+    --tab-inactive-hover: 210 17% 70%;
+    
+    /* Wizard Steps */
+    --wizard-completed-bg: 76 54% 48%;
+    --wizard-completed-text: 0 0% 100%;
+    --wizard-current-bg: 210 61% 44%;
+    --wizard-current-text: 0 0% 100%;
+    --wizard-future-bg: 222 22% 71%;
+    --wizard-future-text: 221 45% 40%;
+    
+    /* Badges */
+    --badge-default-bg: 221 45% 23%;
+    --badge-default-text: 0 0% 100%;
+    --badge-secondary-bg: 210 17% 96%;
+    --badge-secondary-text: 221 45% 23%;
+    --badge-outline-text: 221 45% 23%;
+    --badge-outline-border: 222 22% 75%;
+
+    /* Design system extensions */
+    --radius: 1rem;
+    
+    /* Gradients - Brand colors */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-card: linear-gradient(135deg, hsl(var(--card)), hsl(210 17% 99%));
+    --gradient-progress: linear-gradient(90deg, hsl(var(--progress)), hsl(var(--progress-glow)));
+    --gradient-badge: linear-gradient(135deg, hsl(var(--accent)), hsl(12 87% 65%));
+    
+    /* Shadows */
+    --shadow-card: 0 4px 20px -4px hsl(var(--primary) / 0.1);
+    --shadow-hero: 0 20px 40px -12px hsl(var(--primary) / 0.25);
+    --shadow-glow: 0 0 30px hsl(var(--success-glow) / 0.3);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 221 45% 23%;
+    --sidebar-primary: 221 45% 23%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 17% 96%;
+    --sidebar-accent-foreground: 221 45% 23%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 221 45% 23%;
+  }
+
+  .dark {
+    /* Dark mode - Brand colors adjusted for dark theme */
+    --background: 221 45% 8%;
+    --foreground: 210 17% 95%;
+
+    --card: 221 45% 12%;
+    --card-foreground: 210 17% 95%;
+    --card-border: 220 17% 25%;
+
+    --popover: 221 45% 12%;
+    --popover-foreground: 210 17% 95%;
+
+    --primary: 221 45% 35%;
+    --primary-foreground: 210 17% 95%;
+    --primary-glow: 210 61% 55%;
+
+    --secondary: 212 69% 45%;
+    --secondary-foreground: 210 17% 95%;
+
+    --success: 210 61% 50%;
+    --success-foreground: 221 45% 8%;
+    --success-glow: 210 61% 60%;
+    
+    --progress: 142 69% 55%;
+    --progress-glow: 142 69% 65%;
+
+    --muted: 220 17% 20%;
+    --muted-foreground: 222 22% 65%;
+
+    --accent: 12 87% 60%;
+    --accent-foreground: 221 45% 8%;
+    
+    /* Submission boxes - Dark mode */
+    --submission-box: 220 17% 18%;
+    --submission-box-border: 220 17% 25%;
+    --submission-box-text: 210 17% 95%;
+    --submission-pill-enabled-text: 76 54% 55%;
+    --submission-pill-disabled-text: 222 22% 65%;
+    
+    /* Badges Card Module - Dark mode */
+    --badges-card-bg: 221 45% 12%;
+    --badges-card-border: 220 17% 25%;
+    --badge-item-bg: 220 17% 18%;
+    --badge-item-border: 220 17% 25%;
+    --badge-item-text: 210 17% 95%;
+    
+    /* View Challenges Button - Dark mode */
+    --view-challenges-btn-bg: 220 17% 18%;
+    --view-challenges-btn-text: 210 17% 95%;
+    --view-challenges-btn-border: 220 17% 25%;
+    
+    /* Tab Navigation - Dark mode */
+    --tab-container-bg: 220 17% 18%;
+    --tab-active-bg: 12 87% 60%;
+    --tab-active-text: 221 45% 8%;
+    --tab-inactive-text: 148 163 184;
+    
+    /* Day Label - Dark mode */
+    --day-label-text: 148 163 184;
+    
+    /* Form Section - Dark mode */
+    --form-label-text: 210 17% 95%;
+    --form-instruction-text: 96 165 250;
+    --submission-label-text: 148 163 184;
+    --submission-icon-color: 96 165 250;
+    
+    /* Shop Widget - Dark mode */
+    --shop-widget-bg: 220 17% 18%;
+    --shop-widget-border: 220 17% 25%;
+    --shop-widget-text: 96 165 250;
+    --shop-widget-btn-bg: 220 17% 22%;
+    --shop-widget-btn-text: 96 165 250;
+    
+    /* Dashboard Progress Bar - Dark mode */
+    --dashboard-progress-bar-bg: 220 17% 20%;
+    --dashboard-progress-bar-fill: 142 69% 55%;
+    
+    /* Feelings Subtext - Dark mode */
+    --feelings-subtext-text: 148 163 184;
+    
+    /* Dashboard Page Variables - Dark mode */
+    --hero-bg: 221 45% 35%;
+    --hero-text: 210 17% 95%;
+    --stats-card-bg: 221 45% 12%;
+    --stats-card-border: 220 17% 25%;
+    --stats-icon-bg: 30 41 59;
+    --stats-icon-color: 251 191 36;
+    --stats-value-text: 96 165 250;
+    --stats-label-text: 148 163 184;
+    --stats-value-color: 210 17% 95%;
+    --encouragement-bg: 210 61% 50%;
+    --encouragement-text: 221 45% 8%;
+    
+    /* Getting Started/Onboarding - Dark mode */
+    --page-title-color: 210 17% 95%;
+    --onboarding-step-bg: 221 45% 12%;
+    --onboarding-step-border: 220 17% 25%;
+    --onboarding-step-number-bg: 220 17% 20%;
+    --onboarding-step-number-text: 210 17% 95%;
+    --onboarding-completed-bg: 76 54% 55%;
+    --onboarding-completed-text: 221 45% 8%;
+    --onboarding-progress-bar-bg: 220 17% 20%;
+    --onboarding-progress-bar-fill: 210 61% 50%;
+    --video-card-bg: 221 45% 12%;
+    --video-card-border: 220 17% 25%;
+    
+    /* Progress Page - Dark mode */
+    --streak-card-bg: 210 61% 50%;
+    --streak-value-color: 221 45% 8%;
+    --weekly-grid-item-bg: 220 17% 20%;
+    --weekly-grid-completed-bg: 76 54% 55%;
+    --achievement-box-bg: 12 87% 60%;
+    --achievement-box-border: 12 87% 53%;
+    --leaderboard-item-bg: 221 45% 12%;
+    --leaderboard-rank-color: 210 17% 95%;
+    
+    /* Profile Page - Dark mode */
+    --avatar-border-color: 221 45% 35%;
+    --form-field-bg: 220 17% 15%;
+    --form-field-border: 220 17% 35%;
+    --form-field-text: 210 17% 95%;
+    --form-disabled-bg: 220 17% 20%;
+    --form-disabled-text: 222 22% 65%;
+    --child-input-bg: 220 17% 15%;
+    
+    /* Brand Ambassador - Dark mode */
+    --referral-card-bg: 221 45% 12%;
+    --referral-card-border: 220 17% 25%;
+    --stats-counter-bg: 210 61% 50%;
+    --stats-counter-text: 221 45% 8%;
+    --tier-badge-bronze: 12 87% 60%;
+    --tier-badge-silver: 0 0% 70%;
+    --tier-badge-gold: 45 100% 60%;
+    --payout-item-bg: 221 45% 12%;
+    --payout-amount-color: 76 54% 55%;
+    --chart-primary-color: 221 45% 35%;
+    --chart-secondary-color: 12 87% 60%;
+    
+    /* Admin/Challenges - Dark mode */
+    --challenge-card-bg: 221 45% 12%;
+    --challenge-card-border: 220 17% 25%;
+    --day-badge-bg: 221 45% 35%;
+    --day-badge-text: 210 17% 95%;
+    --editor-bg: 220 17% 15%;
+    --editor-text: 210 17% 95%;
+    --submission-pill-enabled-bg: 76 54% 55%;
+    --submission-pill-enabled-text: 221 45% 8%;
+    --submission-pill-disabled-bg: 0 84.2% 60.2%;
+    --submission-pill-disabled-text: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 17% 95%;
+
+    --border: 220 17% 25%;
+    --input: 220 17% 15%;
+    --input-foreground: 210 17% 95%;
+    --input-border: 220 17% 35%;
+    --ring: 221 45% 35%;
+    
+    /* Module-specific colors - Dark mode */
+    /* Buttons */
+    --button-primary-bg: 12 87% 60%;
+    --button-primary-text: 221 45% 8%;
+    --button-primary-hover: 12 87% 53%;
+    --button-secondary-bg: 220 17% 15%;
+    --button-secondary-text: 210 17% 95%;
+    --button-secondary-hover: 220 17% 20%;
+    
+    /* Tabs & Segmented Controls */
+    --tab-active-bg: 12 87% 60%;
+    --tab-active-text: 221 45% 8%;
+    --tab-inactive-bg: 220 17% 20%;
+    --tab-inactive-text: 210 17% 95%;
+    --tab-inactive-hover: 222 22% 65%;
+    
+    /* Wizard Steps */
+    --wizard-completed-bg: 76 54% 55%;
+    --wizard-completed-text: 221 45% 8%;
+    --wizard-current-bg: 210 61% 50%;
+    --wizard-current-text: 221 45% 8%;
+    --wizard-future-bg: 220 17% 25%;
+    --wizard-future-text: 222 22% 65%;
+    
+    /* Badges */
+    --badge-default-bg: 221 45% 35%;
+    --badge-default-text: 210 17% 95%;
+    --badge-secondary-bg: 220 17% 20%;
+    --badge-secondary-text: 210 17% 95%;
+    --badge-outline-text: 210 17% 95%;
+    --badge-outline-border: 220 17% 35%;
+
+    /* Dark mode gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-card: linear-gradient(135deg, hsl(var(--card)), hsl(215 25% 14%));
+    --gradient-progress: linear-gradient(90deg, hsl(var(--progress)), hsl(var(--progress-glow)));
+    --gradient-badge: linear-gradient(135deg, hsl(var(--accent)), hsl(14 90% 75%));
+    
+    /* Dark mode shadows */
+    --shadow-card: 0 4px 20px -4px hsl(215 100% 5% / 0.3);
+    --shadow-hero: 0 20px 40px -12px hsl(var(--primary) / 0.2);
+    --shadow-glow: 0 0 30px hsl(var(--success-glow) / 0.2);
+
+    /* Sidebar for dark mode */
+    --sidebar-background: 215 25% 10%;
+    --sidebar-foreground: 43 50% 90%;
+    --sidebar-primary: 32 95% 50%;
+    --sidebar-primary-foreground: 215 25% 8%;
+    --sidebar-accent: 215 25% 15%;
+    --sidebar-accent-foreground: 43 50% 90%;
+    --sidebar-border: 215 25% 20%;
+    --sidebar-ring: 32 95% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Hero section styles */
+  .hero-gradient {
+    background: var(--gradient-hero);
+    box-shadow: var(--shadow-hero);
+  }
+  
+  /* Card variants */
+  .card-gradient {
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-card);
+  }
+  
+  .card-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  /* Progress styles */
+  .progress-gradient {
+    background: var(--gradient-progress);
+  }
+  
+  /* Badge styles */
+  .badge-gradient {
+    background: var(--gradient-badge);
+  }
+  
+  /* Animation classes */
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+  
+  /* Hover effects */
+  .hover-lift {
+    @apply transition-smooth hover:translate-y-[-2px] hover:shadow-lg;
+  }
+}
