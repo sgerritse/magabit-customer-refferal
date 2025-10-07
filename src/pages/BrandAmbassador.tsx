@@ -86,7 +86,7 @@ const BrandAmbassador = () => {
     let message = '';
     
     switch (platform) {
-      case 'twitter':
+      case 'x':
         message = `⚡ Start mining real Bitcoin with MAGAbit! ${linkType} package - Trusted U.S.-based mining infrastructure. Bitcoin delivered directly to your wallet: ${url}`;
         break;
       case 'facebook':
@@ -115,7 +115,7 @@ const BrandAmbassador = () => {
     const encodedUrl = encodeURIComponent(url);
 
     switch (platform) {
-      case 'twitter':
+      case 'x':
         shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(editedMessage)}`;
         break;
       case 'facebook':
@@ -138,7 +138,7 @@ const BrandAmbassador = () => {
     
     toast({
       title: "Shared successfully!",
-      description: `Your referral link has been shared on ${platform}.`,
+      description: `Your referral link has been shared on ${platform === 'x' ? 'X' : platform}.`,
     });
   };
   return <div className="min-h-screen customer-referral-bg">
@@ -201,7 +201,7 @@ const BrandAmbassador = () => {
                     <Button size="sm" variant="outline" onClick={() => handleShare(link.url, link.type, 'facebook', link.price, link.commission)} className="h-9 w-9 p-0 hover:bg-blue-50 hover:border-blue-400 hover:text-blue-600">
                       <Facebook className="h-4 w-4" />
                     </Button>
-                    <Button size="sm" variant="outline" onClick={() => handleShare(link.url, link.type, 'twitter', link.price, link.commission)} className="h-9 w-9 p-0 hover:bg-sky-50 hover:border-sky-400 hover:text-sky-600">
+                    <Button size="sm" variant="outline" onClick={() => handleShare(link.url, link.type, 'x', link.price, link.commission)} className="h-9 w-9 p-0 hover:bg-sky-50 hover:border-sky-400 hover:text-sky-600">
                       <Twitter className="h-4 w-4" />
                     </Button>
                     <Button size="sm" variant="outline" onClick={() => handleShare(link.url, link.type, 'linkedin', link.price, link.commission)} className="h-9 w-9 p-0 hover:bg-blue-50 hover:border-blue-500 hover:text-blue-700">
@@ -297,12 +297,12 @@ const BrandAmbassador = () => {
         <DialogContent className="sm:max-w-[525px]">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
-              {sharePreview?.platform === 'twitter' && <Twitter className="h-5 w-5" />}
+              {sharePreview?.platform === 'x' && <Twitter className="h-5 w-5" />}
               {sharePreview?.platform === 'facebook' && <Facebook className="h-5 w-5" />}
               {sharePreview?.platform === 'linkedin' && <Linkedin className="h-5 w-5" />}
               {sharePreview?.platform === 'whatsapp' && <MessageCircle className="h-5 w-5" />}
               {sharePreview?.platform === 'email' && <Mail className="h-5 w-5" />}
-              Share on {sharePreview?.platform.charAt(0).toUpperCase()}{sharePreview?.platform.slice(1)}
+              Share on {sharePreview?.platform === 'x' ? 'X' : sharePreview?.platform.charAt(0).toUpperCase() + sharePreview?.platform.slice(1)}
             </DialogTitle>
             <DialogDescription>
               Preview your message before sharing
@@ -318,9 +318,24 @@ const BrandAmbassador = () => {
                 className="min-h-[150px] font-sans"
                 placeholder="Enter your message..."
               />
-              <p className="text-xs text-muted-foreground mt-2">
-                {editedMessage.length} characters
-              </p>
+              {sharePreview?.platform === 'x' ? (
+                <p className={`text-xs mt-2 font-medium ${
+                  editedMessage.length > 280 
+                    ? 'text-red-600' 
+                    : editedMessage.length > 260 
+                    ? 'text-yellow-600' 
+                    : 'text-muted-foreground'
+                }`}>
+                  {editedMessage.length > 280 && '❌ '}
+                  {editedMessage.length > 260 && editedMessage.length <= 280 && '⚠ '}
+                  {editedMessage.length} / 280 characters
+                  {editedMessage.length > 280 && ' - Message too long'}
+                </p>
+              ) : (
+                <p className="text-xs text-muted-foreground mt-2">
+                  {editedMessage.length} characters
+                </p>
+              )}
             </div>
           </div>
 
@@ -328,7 +343,10 @@ const BrandAmbassador = () => {
             <Button variant="outline" onClick={() => setSharePreview(null)}>
               Cancel
             </Button>
-            <Button onClick={confirmShare}>
+            <Button 
+              onClick={confirmShare}
+              disabled={sharePreview?.platform === 'x' && editedMessage.length > 280}
+            >
               Share Now
             </Button>
           </DialogFooter>
