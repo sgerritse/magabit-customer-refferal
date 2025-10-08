@@ -144,7 +144,7 @@ const CustomerReferral = () => {
   };
   return <div className="min-h-screen customer-referral-bg">
       {/* Main Content */}
-      <main className="container max-w-7xl mx-auto px-4 py-8 space-y-8">
+      <main className="container max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6 sm:space-y-8">
         {/* Referral Links Section */}
         <Card>
           <CardHeader>
@@ -156,10 +156,10 @@ const CustomerReferral = () => {
           </CardHeader>
           <CardContent className="space-y-4">
             {mockReferralLinks.map(link => <div key={link.id} className="p-4 border border-border rounded-lg bg-card space-y-3 shadow-sm">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <Badge variant="secondary" className="font-medium">{link.type}</Badge>
-                    <div className="flex items-center gap-3">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+                    <Badge variant="secondary" className="font-medium w-fit">{link.type}</Badge>
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                       <span className="text-lg font-bold text-foreground">{link.price}</span>
                       <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-green-50 border border-green-300">
                         <span className="text-sm font-semibold text-green-700">{link.commission}</span>
@@ -171,11 +171,11 @@ const CustomerReferral = () => {
                     {link.clicks} clicks · {link.conversions} conversions
                   </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <code className="flex-1 px-3 py-2 rounded text-sm font-mono text-gray-900 bg-slate-100">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                  <code className="flex-1 px-3 py-2 rounded text-xs sm:text-sm font-mono text-gray-900 bg-slate-100 break-all">
                     {link.url}
                   </code>
-                  <Button size="sm" variant="outline" onClick={() => handleCopyLink(link.url, link.id)} className="shrink-0 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                  <Button size="sm" variant="outline" onClick={() => handleCopyLink(link.url, link.id)} className="shrink-0 border-primary text-primary hover:bg-primary hover:text-primary-foreground w-full sm:w-auto">
                     {copiedId === link.id ? <>
                         <Check className="h-4 w-4 mr-2" />
                         Copied
@@ -185,9 +185,9 @@ const CustomerReferral = () => {
                       </>}
                   </Button>
                 </div>
-                <div className="flex items-center gap-2 pt-2 border-t border-border">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2 pt-2 border-t border-border">
                   <span className="text-xs font-medium text-muted-foreground">Share on:</span>
-                  <div className="flex items-center gap-1.5">
+                  <div className="flex flex-wrap items-center gap-1.5">
                     <Button size="sm" variant="outline" onClick={() => handleShare(link.url, link.type, 'facebook', link.price, link.commission)} className="h-9 w-9 p-0 hover:bg-blue-50 hover:border-blue-400 hover:text-blue-600">
                       <Facebook className="h-4 w-4" />
                     </Button>
@@ -210,7 +210,7 @@ const CustomerReferral = () => {
         </Card>
 
         {/* Stats Cards */}
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
           <Card className="shadow-sm">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">Total Clicks</CardTitle>
@@ -252,30 +252,34 @@ const CustomerReferral = () => {
             <CardDescription>Latest referral clicks and conversions</CardDescription>
           </CardHeader>
           <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Date</TableHead>
-                  <TableHead>Product</TableHead>
-                  <TableHead>Clicks</TableHead>
-                  <TableHead>Status</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {mockRecentActivity.map(activity => <TableRow key={activity.id}>
-                    <TableCell className="text-muted-foreground">{activity.date}</TableCell>
-                    <TableCell>
-                      <Badge variant="outline" className="font-normal">{activity.linkType}</Badge>
-                    </TableCell>
-                    <TableCell className="font-medium">{activity.clicks}</TableCell>
-                    <TableCell>
-                      <Badge className={activity.status === 'Converted' ? 'bg-success text-success-foreground hover:bg-success/90' : 'bg-accent text-accent-foreground hover:bg-accent/90'}>
-                        {activity.status}
-                      </Badge>
-                    </TableCell>
-                  </TableRow>)}
-              </TableBody>
-            </Table>
+            <div className="overflow-x-auto -mx-6 sm:mx-0">
+              <div className="inline-block min-w-full align-middle">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead className="whitespace-nowrap">Date</TableHead>
+                      <TableHead className="whitespace-nowrap">Product</TableHead>
+                      <TableHead className="whitespace-nowrap">Clicks</TableHead>
+                      <TableHead className="whitespace-nowrap">Status</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {mockRecentActivity.map(activity => <TableRow key={activity.id}>
+                        <TableCell className="text-muted-foreground whitespace-nowrap">{activity.date}</TableCell>
+                        <TableCell className="whitespace-nowrap">
+                          <Badge variant="outline" className="font-normal">{activity.linkType}</Badge>
+                        </TableCell>
+                        <TableCell className="font-medium">{activity.clicks}</TableCell>
+                        <TableCell>
+                          <Badge className={activity.status === 'Converted' ? 'bg-success text-success-foreground hover:bg-success/90' : 'bg-accent text-accent-foreground hover:bg-accent/90'}>
+                            {activity.status}
+                          </Badge>
+                        </TableCell>
+                      </TableRow>)}
+                  </TableBody>
+                </Table>
+              </div>
+            </div>
           </CardContent>
         </Card>
       </main>
